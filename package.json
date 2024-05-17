@@ -1,0 +1,12 @@
+{
+  "name": "meet-up-parser",
+  "version": "1.0.0",
+  "packageManager": "yarn@4.2.2",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  }
+}
