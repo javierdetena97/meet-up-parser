@@ -6,7 +6,7 @@ import { parserService } from "./services/parser.service";
 
 
 async function main(): Promise<void> {
-    const parsedMeetups = await parserService.toHtml(meetups);
+    const parsedMeetups = await parserService.toSingleLines(meetups);
     console.log(JSON.stringify(parsedMeetups, null, 2));
 }
 

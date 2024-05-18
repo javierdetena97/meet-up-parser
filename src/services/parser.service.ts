@@ -5,7 +5,7 @@ import { OutputData } from "../models/outputData.model";
 
 class ParserService {
 
-    public async toHtml(inputData: InputData): Promise<OutputData> {
+    public async toSingleLines(inputData: InputData): Promise<OutputData> {
         const meetups: Meetup[] = inputData.input;
         const parsedMeetups: string[] = [];
 
