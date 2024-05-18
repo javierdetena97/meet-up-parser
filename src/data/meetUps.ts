@@ -1,7 +1,7 @@
 // Models
 import { InputData } from "../models/inputData.model";
 
-export const meetups: InputData = {
+export const meetUps: InputData = {
     input: [
         {
             edition: "4th",

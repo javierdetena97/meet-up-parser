@@ -1,5 +1,5 @@
 // Data
-import { meetups } from "../data/meetups";
+import { meetUps } from "../data/meetUps";
 
 // Services
 import { parserService } from "../services/parser.service";
@@ -10,9 +10,9 @@ import { OutputData } from "../models/outputData.model";
 
 describe("ParserService", () => {
     it("should parse meetups correctly", async () => {
-        const parsedMeetups: OutputData = await parserService.toSingleLines(meetups);
+        const parsedMeetups: OutputData = await parserService.toSingleLines(meetUps);
         expect(parsedMeetups).toEqual({
-            meetups: [
+            meetUps: [
                 "4th JBCN Conference · 2018-06-11 / 2018-06-13 · Barcelona, Spain",
                 "3rd DevTernity · 2018-11-30 / 2018-12-01 · Riga, Latvia",
                 "1st I T.A.K.E Unconference · 2016-05-19 / 2016-05-20 · Bucharest, Romania | Maramures, Romania",
@@ -40,7 +40,7 @@ describe("ParserService", () => {
         };
         const parsedMeetup: OutputData = await parserService.toSingleLines(singleDayMeetup);
         expect(parsedMeetup).toEqual({
-            meetups: ["Single Day Event · 2022-01-01 · Single City, Single Country"]
+            meetUps: ["Single Day Event · 2022-01-01 · Single City, Single Country"]
         });
     });
 });

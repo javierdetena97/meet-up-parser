@@ -6,23 +6,23 @@ import { OutputData } from "../models/outputData.model";
 class ParserService {
 
     public async toSingleLines(inputData: InputData): Promise<OutputData> {
-        const meetups: Meetup[] = inputData.input;
-        const parsedMeetups: string[] = [];
+        const meetUps: Meetup[] = inputData.input;
+        const parsedMeetUps: string[] = [];
 
-        meetups.forEach(meetup => {
-            const edition: string = meetup.edition ? meetup.edition + " " : "";
-            const name: string = meetup.name;
-            const startDate: string = meetup.startDate;
-            const endDate: string = meetup.endDate ? " / " + meetup.endDate : "";
-            const locations: string = meetup.location.map(location => {
+        meetUps.forEach(meetUp => {
+            const edition: string = meetUp.edition ? meetUp.edition + " " : "";
+            const name: string = meetUp.name;
+            const startDate: string = meetUp.startDate;
+            const endDate: string = meetUp.endDate ? " / " + meetUp.endDate : "";
+            const locations: string = meetUp.location.map(location => {
                 return [location.city, location.state, location.country].filter(Boolean).join(", ");
             }).join(" | ");
 
             const parsedMeetup: string = `${edition}${name} · ${startDate}${endDate} · ${locations}`;
-            parsedMeetups.push(parsedMeetup);
+            parsedMeetUps.push(parsedMeetup);
         });
 
-        return {meetups: parsedMeetups};
+        return {meetUps: parsedMeetUps};
     }
 
 }
