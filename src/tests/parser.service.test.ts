@@ -23,12 +23,13 @@ describe("ParserService", () => {
         });
     });
 
-    it("should handle meetups without end date", async () => {
+    it("should handle meetups without edition", async () => {
         const singleDayMeetup = {
             input: [
                 {
-                    name: "Diada Nacional de Catalunya",
-                    startDate: "2024-09-11",
+                    name: "Mobile World Congress",
+                    startDate: "2024-02-26",
+                    endDate: "2024-02-29",
                     location: [
                         {
                             city: "Barcelona",
@@ -40,7 +41,90 @@ describe("ParserService", () => {
         };
         const parsedMeetup: OutputData = await parserService.toSingleLines(singleDayMeetup);
         expect(parsedMeetup).toEqual({
-            meetUps: ["Diada Nacional de Catalunya · 2024-09-11 · Barcelona, Spain"]
+            meetUps: ["Mobile World Congress · 2024-02-26 / 2024-02-29 · Barcelona, Spain"]
+        });
+    });
+
+    it("should handle meetups without name", async () => {
+        const singleDayMeetup = {
+            input: [
+                {
+                    edition: "18th",
+                    startDate: "2024-02-26",
+                    endDate: "2024-02-29",
+                    location: [
+                        {
+                            city: "Barcelona",
+                            country: "Spain"
+                        }
+                    ]
+                }
+            ]
+        };
+        const parsedMeetup: OutputData = await parserService.toSingleLines(singleDayMeetup);
+        expect(parsedMeetup).toEqual({
+            meetUps: ["18th  · 2024-02-26 / 2024-02-29 · Barcelona, Spain"]
+        });
+    });
+
+    it("should handle meetups without start date", async () => {
+        const singleDayMeetup = {
+            input: [
+                {
+                    edition: "18th",
+                    name: "Mobile World Congress",
+                    endDate: "2024-02-29",
+                    location: [
+                        {
+                            city: "Barcelona",
+                            country: "Spain"
+                        }
+                    ]
+                }
+            ]
+        };
+        const parsedMeetup: OutputData = await parserService.toSingleLines(singleDayMeetup);
+        expect(parsedMeetup).toEqual({
+            meetUps: ["18th Mobile World Congress ·  / 2024-02-29 · Barcelona, Spain"]
+        });
+    });
+
+    it("should handle meetups without end date", async () => {
+        const singleDayMeetup = {
+            input: [
+                {
+                    edition: "18th",
+                    name: "Mobile World Congress",
+                    startDate: "2024-02-26",
+                    location: [
+                        {
+                            city: "Barcelona",
+                            country: "Spain"
+                        }
+                    ]
+                }
+            ]
+        };
+        const parsedMeetup: OutputData = await parserService.toSingleLines(singleDayMeetup);
+        expect(parsedMeetup).toEqual({
+            meetUps: ["18th Mobile World Congress · 2024-02-26 · Barcelona, Spain"]
+        });
+    });
+
+    it("should handle meetups without location", async () => {
+        const singleDayMeetup = {
+            input: [
+                {
+                    edition: "18th",
+                    name: "Mobile World Congress",
+                    startDate: "2024-02-26",
+                    endDate: "2024-02-29"
+                }
+            ]
+        };
+        const parsedMeetup: OutputData = await parserService.toSingleLines(singleDayMeetup);
+        expect(parsedMeetup).toEqual({
+            meetUps: ["18th Mobile World Congress · 2024-02-26 / 2024-02-29 · No location available"]
         });
     });
 });
