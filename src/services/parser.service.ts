@@ -1,12 +1,12 @@
 // Models
-import { Meetup } from "../models/meetup.model";
+import { MeetUp } from "../models/meetUp.model";
 import { InputData } from "../models/inputData.model";
 import { OutputData } from "../models/outputData.model";
 
 class ParserService {
 
     public async toSingleLines(inputData: InputData): Promise<OutputData> {
-        const meetUps: Meetup[] = inputData.input;
+        const meetUps: MeetUp[] = inputData.input;
         const parsedMeetUps: string[] = [];
 
         meetUps.forEach(meetUp => {

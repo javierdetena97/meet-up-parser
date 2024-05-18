@@ -1,6 +1,6 @@
 // Models
-import { Meetup } from "./meetup.model";
+import { MeetUp } from "./meetUp.model";
 
 export interface InputData {
-    input: Meetup[];
+    input: MeetUp[];
 }
