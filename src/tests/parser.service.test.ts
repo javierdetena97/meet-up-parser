@@ -27,12 +27,12 @@ describe("ParserService", () => {
         const singleDayMeetup = {
             input: [
                 {
-                    name: "Single Day Event",
-                    startDate: "2022-01-01",
+                    name: "Diada Nacional de Catalunya",
+                    startDate: "2024-09-11",
                     location: [
                         {
-                            city: "Single City",
-                            country: "Single Country"
+                            city: "Barcelona",
+                            country: "Spain"
                         }
                     ]
                 }
@@ -40,7 +40,7 @@ describe("ParserService", () => {
         };
         const parsedMeetup: OutputData = await parserService.toSingleLines(singleDayMeetup);
         expect(parsedMeetup).toEqual({
-            meetUps: ["Single Day Event · 2022-01-01 · Single City, Single Country"]
+            meetUps: ["Diada Nacional de Catalunya · 2024-09-11 · Barcelona, Spain"]
         });
     });
 });
