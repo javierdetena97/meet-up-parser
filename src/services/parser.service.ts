@@ -11,12 +11,12 @@ class ParserService {
 
         meetUps.forEach(meetUp => {
             const edition: string = meetUp.edition ? meetUp.edition + " " : "";
-            const name: string = meetUp.name;
-            const startDate: string = meetUp.startDate;
+            const name: string = meetUp.name ? meetUp.name : "";
+            const startDate: string = meetUp.startDate ? meetUp.startDate : "";
             const endDate: string = meetUp.endDate ? " / " + meetUp.endDate : "";
-            const locations: string = meetUp.location.map(location => {
+            const locations: string = (meetUp.location && meetUp.location.length > 0) ? meetUp.location.map(location => {
                 return [location.city, location.state, location.country].filter(Boolean).join(", ");
-            }).join(" | ");
+            }).join(" | ") : "No location available";
 
             const parsedMeetup: string = `${edition}${name} · ${startDate}${endDate} · ${locations}`;
             parsedMeetUps.push(parsedMeetup);
